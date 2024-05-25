@@ -1,11 +1,15 @@
+import 'package:flash_char_flutter/screens/wrapper_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/chat_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/registration_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -35,12 +39,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: WrapperScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         ChatScreen.id: (context) => ChatScreen(),
-        RegistrationScreen.id: (context) => RegistrationScreen()
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        WrapperScreen.id: (context) => WrapperScreen()
       },
     );
   }
